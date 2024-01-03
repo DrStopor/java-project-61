@@ -1,6 +1,7 @@
 plugins {
     application
     id("java")
+    id("checkstyle")
 }
 
 group = "hexlet.code"
@@ -15,6 +16,10 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+tasks.getByName("run", JavaExec::class) {
+    standardInput = System.`in`
 }
 
 tasks.test {
