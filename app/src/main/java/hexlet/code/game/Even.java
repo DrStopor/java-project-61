@@ -1,21 +1,18 @@
 package hexlet.code.game;
 
 import hexlet.code.Cli;
+import hexlet.code.Engine;
 import hexlet.code.game.interfaces.Playable;
 import hexlet.code.game.interfaces.Scanarable;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Even implements Playable, Scanarable {
-    public String userName = "";
-    public Scanner scanner = new Scanner(System.in);
+public class Even implements Playable {
+    private Engine engine = null;
 
     public Even() {
-        System.out.println("Welcome to the Brain Games!");
-        System.out.print("May I have your name? ");
-        userName = scanner.next();
-        System.out.printf("Hello, %s!", userName);
+        engine = new Engine();
     }
     public void play() {
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
@@ -26,39 +23,33 @@ public class Even implements Playable, Scanarable {
         do {
             int number = rnd.nextInt(101);
             boolean even = (number & 1) == 1;
-            System.out.println("Question: " + number);
-            System.out.print("Your answer: ");
+            engine.printQuestion(String.valueOf(number));
+            String answer = engine.askAnswer();
 
-            String choose = scanner.next();
-            switch (choose) {
+            switch (answer) {
                 case "yes":
                     if (even) {
-                        System.out.println("Correct");
-                        tryCount--;
+                        engine.printCorrect();
+                        engine.tryCount--;
                         continue;
                     } else {
-                        loseText(choose, "no");
+                        engine.loseText(answer, "no");
                         return;
                     }
                 case "no":
                     if (!even) {
-                        System.out.println("Correct");
-                        tryCount--;
+                        engine.printCorrect();
+                        engine.tryCount--;
                         continue;
                     } else {
-                        loseText(choose, "yes");
+                        engine.loseText(answer, "yes");
                         return;
                     }
                 default:
-                    loseText(choose, even ? "yes" : "no");
+                    engine.loseText(answer, even ? "yes" : "no");
                     return;
             }
-        } while (tryCount > 0);
-        System.out.printf("Congratulations, %s!", userName);
-    }
-
-    private void loseText(String userAnswer, String answer) {
-        System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.\n" +
-                "Let's try again, %s", userAnswer, answer, userName);
+        } while (engine.tryCount > 0);
+        engine.congratulation();
     }
 }

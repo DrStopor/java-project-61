@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.game.Calculator;
 import hexlet.code.game.Even;
 import hexlet.code.game.Greet;
 
@@ -19,6 +20,7 @@ public class App {
         System.out.println(ANSI_BLUE + "Please enter the game number and press Enter.");
         System.out.println(ANSI_GREEN + "1 - Greet");
         System.out.println(ANSI_GREEN + "2 - Even");
+        System.out.println(ANSI_GREEN + "3 - Calculator");
         System.out.println(ANSI_YELLOW + "0 - Exit");
         System.out.print(ANSI_CYAN + "Your choice: ");
 
@@ -34,6 +36,10 @@ public class App {
             case 2:
                 Even even = new Even();
                 even.play();
+                return;
+            case 3:
+                Calculator calculator = new Calculator();
+                calculator.play();
                 return;
             default:
                 return;
