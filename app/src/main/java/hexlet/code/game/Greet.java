@@ -15,6 +15,8 @@ public class Greet implements Playable, Scanarable {
         System.out.print("May I have your name? ");
         userName = scanner.next();
     }
+
+    @Override
     public void play() {
         System.out.printf("Hello, %s!", userName);
     }

@@ -14,6 +14,8 @@ public class Even implements Playable {
     public Even() {
         engine = new Engine();
     }
+
+    @Override
     public void play() {
         System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
 
