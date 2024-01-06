@@ -21,6 +21,7 @@ public class App {
         System.out.println(ANSI_GREEN + "3 - Calculator");
         System.out.println(ANSI_GREEN + "4 - GCD");
         System.out.println(ANSI_GREEN + "5 - Progression");
+        System.out.println(ANSI_GREEN + "6 - Prime");
         System.out.println(ANSI_YELLOW + "0 - Exit");
         System.out.print(ANSI_CYAN + "Your choice: ");
 
@@ -48,6 +49,10 @@ public class App {
             case 5:
                 Progression progression = new Progression();
                 progression.play();
+                return;
+            case 6:
+                Prime prime = new Prime();
+                prime.play();
                 return;
             default:
                 return;
