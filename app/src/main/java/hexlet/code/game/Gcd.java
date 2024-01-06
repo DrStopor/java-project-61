@@ -5,7 +5,9 @@ import hexlet.code.game.interfaces.Playable;
 
 import java.util.Random;
 
-public class Gcd implements Playable {
+public final class Gcd implements Playable {
+    private static final int MAX_NUMBER = 100;
+    private static final int MIN_NUMBER = 0;
     private Engine engine = null;
 
     public Gcd() {
@@ -21,20 +23,20 @@ public class Gcd implements Playable {
         int result = 1;
 
         do {
-            numberOne = rnd.nextInt(100);
-            numberTwo = rnd.nextInt(100);
+            numberOne = rnd.nextInt(MIN_NUMBER, MAX_NUMBER);
+            numberTwo = rnd.nextInt(MIN_NUMBER, MAX_NUMBER);
             result = getGdc(numberOne, numberTwo);
             engine.printQuestion(numberOne + " " + numberTwo);
             String answer = engine.askAnswer();
 
             if (result == Integer.parseInt(answer)) {
                 engine.printCorrect();
-                engine.tryCount--;
+                engine.setTryCount(engine.getTryCount() - 1);
             } else {
                 engine.loseText(answer, String.valueOf(result));
                 return;
             }
-        } while (engine.tryCount > 0);
+        } while (engine.getTryCount() > 0);
 
         engine.congratulation();
     }

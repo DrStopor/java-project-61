@@ -5,7 +5,8 @@ import hexlet.code.game.interfaces.Playable;
 
 import java.util.Random;
 
-public class Prime implements Playable {
+public final class Prime implements Playable {
+    public static final int MAX_NUMBER = 100;
     private Engine engine = null;
 
     public Prime() {
@@ -17,7 +18,7 @@ public class Prime implements Playable {
         Random rnd = new Random();
 
         do {
-            int number = rnd.nextInt(1, 100);
+            int number = rnd.nextInt(1, MAX_NUMBER);
             boolean isPrime = prime(number);
 
             engine.printQuestion(String.valueOf(number));
@@ -40,15 +41,15 @@ public class Prime implements Playable {
                     engine.loseText(answer, isPrime ? "yes" : "no");
                     return;
             }
-            engine.tryCount--;
+            engine.setTryCount(engine.getTryCount() - 1);
             engine.printCorrect();
-        } while (engine.tryCount > 0);
+        } while (engine.getTryCount() > 0);
         engine.congratulation();
     }
 
     private boolean prime(int n) {
-        for(int i = 2; i<= Math.sqrt(n); i++) {
-            if (n%i == 0) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
                 return false;
             }
         }

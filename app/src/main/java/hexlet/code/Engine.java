@@ -1,19 +1,18 @@
 package hexlet.code;
 
-import hexlet.code.game.interfaces.Scanarable;
-
 import java.util.Scanner;
 
-public class Engine implements Scanarable {
-    public String userName = "";
-    public Scanner scanner = new Scanner(System.in);
-    public int tryCount = 3;
+public final class Engine {
+    public static final int MAX_TRY = 3;
+    private String userName = "";
+    private final Scanner scanner = new Scanner(System.in);
+    private int tryCount = MAX_TRY;
 
     public Engine() {
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
-        userName = scanner.next();
-        System.out.printf("Hello, %s!\n", userName);
+        setUserName(scanner.next());
+        System.out.printf("Hello, %s!\n", getUserName());
     }
 
     public void printQuestion(String question) {
@@ -30,11 +29,31 @@ public class Engine implements Scanarable {
     }
 
     public void congratulation() {
-        System.out.printf("Congratulations, %s!", userName);
+        System.out.printf("Congratulations, %s!", getUserName());
     }
 
     public void loseText(String userAnswer, String answer) {
-        System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.\n" +
-                "Let's try again, %s!", userAnswer, answer, userName);
+        System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.\n"
+                + "Let's try again, %s!", userAnswer, answer, getUserName());
+    }
+
+    private void setUserName(String name) {
+        userName = name;
+    }
+
+    private String getUserName() {
+        return userName;
+    }
+
+    public void setTryCount(int value) {
+        tryCount = value;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    private Scanner getScanner() {
+        return scanner;
     }
 }

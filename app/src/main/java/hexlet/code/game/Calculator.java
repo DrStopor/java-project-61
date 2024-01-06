@@ -5,7 +5,9 @@ import hexlet.code.game.interfaces.Playable;
 
 import java.util.Random;
 
-public class Calculator implements Playable {
+public final class Calculator implements Playable {
+    public static final int MAX_NUMBER = 100;
+    public static final int VARIATE_CHOISE = 3;
     private Engine engine = null;
 
     public Calculator() {
@@ -19,9 +21,10 @@ public class Calculator implements Playable {
         do {
             int result = 0;
             String answer = "";
-            int numberOne = rnd.nextInt(100);
-            int numberTwo = rnd.nextInt(100);
-            switch (rnd.nextInt(3)) {
+            int numberOne = rnd.nextInt(MAX_NUMBER);
+            int numberTwo = rnd.nextInt(MAX_NUMBER);
+            switch (rnd.nextInt(VARIATE_CHOISE)) {
+                default:
                 case 0:
                     result = numberOne + numberTwo;
                     engine.printQuestion(numberOne + " + " + numberTwo);
@@ -41,12 +44,12 @@ public class Calculator implements Playable {
 
             if (result == Integer.parseInt(answer)) {
                 engine.printCorrect();
-                engine.tryCount--;
+                engine.setTryCount(engine.getTryCount() - 1);
             } else {
                 engine.loseText(answer, String.valueOf(result));
                 return;
             }
-        } while (engine.tryCount > 0);
+        } while (engine.getTryCount() > 0);
 
         engine.congratulation();
     }
