@@ -29,22 +29,22 @@ public class Even implements Playable {
             String answer = engine.askAnswer();
 
             switch (answer) {
-                case "yes":
+                case "no":
                     if (even) {
                         engine.printCorrect();
                         engine.tryCount--;
                         continue;
                     } else {
-                        engine.loseText(answer, "no");
+                        engine.loseText(answer, "yes");
                         return;
                     }
-                case "no":
+                case "yes":
                     if (!even) {
                         engine.printCorrect();
                         engine.tryCount--;
                         continue;
                     } else {
-                        engine.loseText(answer, "yes");
+                        engine.loseText(answer, "no");
                         return;
                     }
                 default:

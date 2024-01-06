@@ -26,18 +26,18 @@ public class Prime implements Playable {
             switch (answer) {
                 case "yes":
                     if (!isPrime) {
-                        engine.loseText(answer, String.valueOf(isPrime));
+                        engine.loseText(answer, "no");
                         return;
                     }
                     break;
                 case "no":
                     if (isPrime) {
-                        engine.loseText(answer, String.valueOf(isPrime));
+                        engine.loseText(answer, "yes");
                         return;
                     }
                     break;
                 default:
-                    engine.loseText(answer, String.valueOf(isPrime));
+                    engine.loseText(answer, isPrime ? "yes" : "no");
                     return;
             }
             engine.tryCount--;
