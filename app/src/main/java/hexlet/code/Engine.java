@@ -35,6 +35,6 @@ public class Engine implements Scanarable {
 
     public void loseText(String userAnswer, String answer) {
         System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.\n" +
-                "Let's try again, %s", userAnswer, answer, userName);
+                "Let's try again, %s!", userAnswer, answer, userName);
     }
 }
